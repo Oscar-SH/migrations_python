@@ -10,7 +10,7 @@ def get_connection_mysql(ip: str, db: str, usuario: str, passw: str):
 
 
 def get_query(query: str):
-    result = get_connection_mysql('10.30.13.37', 'inventarios', 'root', 'siscae1035')
+    result = get_connection_mysql('10.30.13.6', 'db_sica', 'root', 'siscae1035')
     cursor = result.cursor(buffered=True)
     cursor.execute(query)
     res = cursor.fetchall()
@@ -104,7 +104,6 @@ def convert_mueble_id(bienes):
     inv_mueble = get_query("SELECT * FROM inv_cat_mueble")
     cat_ubicaciones = get_query("SELECT * FROM cat_ubicaciones WHERE id_ubicacion")
     for row in bienes:
-        x = row['BMI_AREA']
         for mueble in inv_mueble:
             if str(row['BMI_CTA_CON']) == mueble[1]:
                 row['ID_TIPO_MUEBLE'] = mueble[0]
@@ -199,7 +198,7 @@ def get_format_bienes(lista):
 
 
 def insert_bienes():
-    bienes = get_dic_excel('BMININVE2.xlsx', 'BMININVE2')
+    bienes = get_dic_excel('MIGRACION.xlsx', 'MIGRACION')
     instance = get_format_bienes(bienes)
     base_os = get_connection_mysql('10.30.13.6', 'db_sica', 'root', 'siscae1035')
     cursorq = base_os.cursor(buffered=True)
