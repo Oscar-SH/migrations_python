@@ -130,10 +130,10 @@ def convert_catalogos_inventarios(bienes):
     for row in bienes:
         for inv in inventarios:
             if str(row['CLAVE_CAE']) == "'" + str(inv['txtCtaCon']) + "'":
-                adqui = inv['Tipo de Adquisición']
+                adqui = inv['Tipo de adquisicion']
                 val = inv['Cuadro combinado418']
                 program = inv['Cuadro combinado426']
-                espe = inv['Especialidad ']
+                espe = inv['Especialidad']
         for adquisicion in inv_adquisiciones:
             if adqui == adquisicion[1]:
                 row['Tipo de Adq'] = adquisicion[0]
